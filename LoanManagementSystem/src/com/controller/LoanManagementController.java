@@ -20,6 +20,7 @@ public class LoanManagementController {
 			System.out.println("Press 2. To get all loan");
 			System.out.println("Press 3. To get particular loan details");
 			System.out.println("Press 4. For loan repayment");
+			System.out.println("Press 5. To calculate interest amount for particular loan");
 			System.out.println("Press 0. To exit");
 			System.out.println("********************************************************\n");
 			
@@ -95,6 +96,7 @@ public class LoanManagementController {
 				} catch (InvalidLoanException | SQLException e) {
 					System.out.println(e.getMessage());
 				}
+				break;
 				
 			case 4:
 				// Loan Repayments
@@ -105,6 +107,7 @@ public class LoanManagementController {
 					System.out.println("Enter the amount: ");
 					double amount = sc.nextDouble();
 					double singleEmi = loanManagementService.calculateEmi(loanId);
+					System.out.println("Single Emi : "+ singleEmi);
 					if(amount < singleEmi) {
 						System.out.println("Payment rejected");
 						break;
@@ -118,8 +121,20 @@ public class LoanManagementController {
 				} catch (InvalidLoanException | SQLException e) {
 					System.out.println(e.getMessage());
 				}
+				break;
 				
-			
+			case 5:
+				// To calculate interest amount for particular loan
+				System.out.println("Enter the loan id: ");
+				loanId = sc.nextInt();
+				try {
+					loanManagementService.verifyLoanId(loanId);
+					double interest = loanManagementService.calculateInterest(loanId);
+					System.out.println("Interest : "+ interest);
+				} catch (InvalidLoanException | SQLException e) {
+					System.out.println(e.getMessage());
+				}
+			    break;
 									
 				
 			}

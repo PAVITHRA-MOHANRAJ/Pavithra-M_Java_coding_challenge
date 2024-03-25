@@ -168,7 +168,7 @@ public class ILoanRepositoryImpl implements ILoanRepository {
 	@Override
 	public int loanRepayment(int loanId, double amount, double singleEmi) {
 		int noOfEmi = 0;
-		while(amount < singleEmi) {
+		while(amount > singleEmi) { 
 			noOfEmi +=1;
 			amount = amount - singleEmi;
 		}

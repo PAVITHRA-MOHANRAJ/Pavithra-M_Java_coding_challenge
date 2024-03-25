@@ -135,8 +135,13 @@ public class LoanManagementController {
 					System.out.println(e.getMessage());
 				}
 			    break;
+			    
+			default:
+				System.out.println("Invalid choice");
+				break;
 									
 				
+			
 			}
 		}
 		
